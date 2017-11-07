@@ -7,3 +7,4 @@
 ## Instructions for use
 
 * Install requirements. `$ pip install -r requirements.txt`
+* Run file. `$ python3 openaiexample.py`
