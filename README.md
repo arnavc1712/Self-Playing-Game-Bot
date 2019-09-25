@@ -10,4 +10,5 @@
 * Run file. `$ python3 realtime_train.py`
 
 ## In Use
+### I tested this model with a game called Cart Pole. It learnt it decently well, but data from games played by humans could give a much better performance.
 ![Validation](gif/test.gif)
