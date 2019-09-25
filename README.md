@@ -1,4 +1,4 @@
-# DNN_gym_openai
+# Self Playing Game Bot
 
 * Experimented with OpenAI gym, A toolkit for developing and comparing reinforcement learning algorithms.
 * Created my own training dataset using random instances of the game which passed a minimum score requirement. 
