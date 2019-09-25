@@ -7,4 +7,7 @@
 ## Instructions for use
 
 * Install requirements. `$ pip install -r requirements.txt`
-* Run file. `$ python3 openaiexample.py`
+* Run file. `$ python3 realtime_train.py`
+
+## In Use
+![Validation](gif/test.gif)
