@@ -6,14 +6,16 @@ from collections import Counter
 import gym
 import random
 import numpy as np
+import os.path
+from os import path
 
 LR = 1e-3
 
 env = gym.make('CartPole-v0')
 env.reset()
 goal_steps = 1000
-score_requirement = 50
-initial_games = 10000
+score_requirement = 112
+initial_games = 50000
 counter=0
 
 def some_random_games_first():
@@ -40,6 +42,8 @@ def initial_population():
 	training_data = []
 	scores = []
 	accepted_scores =[]
+	print(initial_games)
+	print(score_requirement)
 	for _ in range(initial_games):
 		score = 0
 		game_memory = []
@@ -118,19 +122,17 @@ def neural_network_model(input_size):
 def train_model(training_data, model=False):
 	X = np.array([i[0] for i in training_data]).reshape(-1, len(training_data[0][0]), 1)
 	Y = [i[1] for i in training_data]
-
-	if not model:
-		model = neural_network_model(input_size = len(X[0]))
-
-	
-	model.load("first_model.model")
-	model.fit({"input":X}, {"targets":Y}, n_epoch=3, snapshot_step=500, show_metric=True, run_id="openaistuff")
+	model = neural_network_model(input_size = len(X[0]))
+	if path.exists("first_model.model.index"):
+		model.load("first_model.model")
+	else:
+		
+		model.fit({"input":X}, {"targets":Y}, n_epoch=20, snapshot_step=500, show_metric=True, run_id="openaistuff")
 	return model
 
 
-
 model = train_model(training_data = initial_population())
-model.save("first_model.model")
+# model.save("first_model.model")
 
 scores = []
 choices = []
@@ -142,7 +144,7 @@ for each_game in range(10):
 	env.reset()
 
 	for _  in range(goal_steps):
-		# env.render()
+		env.render()
 
 		if(len(prev_observation)==0):
 			action = env.action_space.sample()
